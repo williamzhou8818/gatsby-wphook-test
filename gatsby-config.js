@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path:'.env'
+})
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -31,49 +34,49 @@ module.exports = {
      * Gatsby's data processing layer begins with “source”
      * plugins. Here the site sources its data from WordPress.
      */
-    // {
-    //   resolve: "gatsby-source-wordpress",
-    //   options: {
-    //     /*
-    //      * The base URL of the WordPress site without the trailingslash and the protocol. This is required.
-    //      * Example : 'gatsbyjsexamplewordpress.wordpress.com' or 'www.example-site.com'
-    //      */
-    //     baseUrl: "http://localhost:8888/",
-    //     // The protocol. This can be http or https.
-    //     protocol: "http",
-    //     // If false, then the assumption is made that the site is self hosted.
-    //     // If true, then the plugin will source its content on wordpress.com using the JSON REST API V2.
-    //     // If your site is hosted on wordpress.org, then set this to false.
-    //     // If useACF is true, then the source plugin will try to import the WordPress ACF Plugin contents.
-    //     // This feature is untested for sites hosted on wordpress.com.
-    //     // Defaults to true.
-    //     //useACF: true,
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        /*
+         * The base URL of the WordPress site without the trailingslash and the protocol. This is required.
+         * Example : 'gatsbyjsexamplewordpress.wordpress.com' or 'www.example-site.com'
+         */
+        baseUrl: process.env.API_URL,
+        // The protocol. This can be http or https.
+        protocol: process.env.API_PROTOCOL,
+        // If false, then the assumption is made that the site is self hosted.
+        // If true, then the plugin will source its content on wordpress.com using the JSON REST API V2.
+        // If your site is hosted on wordpress.org, then set this to false.
+        // If useACF is true, then the source plugin will try to import the WordPress ACF Plugin contents.
+        // This feature is untested for sites hosted on wordpress.com.
+        // Defaults to true.
+        //useACF: true,
        
        
 
-    //     // Set cookies that should be send with requests to WordPress as key value pairs
-    //    // cookies: {},
-    //     // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
-    //     // It can help you debug specific API Endpoints problems.
-    //     // verboseOutput: false,
-    //     // Set how many pages are retrieved per API request.
-    //     //perPage: 100,
+        // Set cookies that should be send with requests to WordPress as key value pairs
+       // cookies: {},
+        // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
+        // It can help you debug specific API Endpoints problems.
+        // verboseOutput: false,
+        // Set how many pages are retrieved per API request.
+        //perPage: 100,
        
         
-    //     // includedRoutes: [
-    //     //   "**/categories",
-    //     //   "**/posts",
-    //     //   "**/pages",
-    //     //   "**/media",
-    //     //   "**/tags",
-    //     //   "**/taxonomies",
-    //     //   "**/users",
-    //     // ],
+        includedRoutes: [
+          "**/categories",
+          "**/posts",
+          "**/pages",
+          "**/media",
+          "**/tags",
+          "**/taxonomies",
+          "**/users",
+        ],
  
     
         
-    //   },
-    // },
-
+      },
+    },
+    'gatsby-plugin-netlify'
   ],
 }
