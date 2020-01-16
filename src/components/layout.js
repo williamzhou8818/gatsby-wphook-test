@@ -7,14 +7,34 @@
 
 import React from "react"
 import MainMenu from './MainMenu';
+import styled, { createGlobalStyle } from 'styled-components';
+
+const ClobalSytles = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+`
+const LayoutWarapper = styled.div`
+  width: 960px;
+  margin: 0 auto;
+`
+
+
+
 
 
 const Layout = ({ children }) => {
 
   return (
     <div>
+      <ClobalSytles/>
       <MainMenu />
-     {children}
+      <LayoutWarapper >
+       {children}
+      </LayoutWarapper>
     </div>
   )
 }

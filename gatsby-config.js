@@ -8,6 +8,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -41,7 +42,7 @@ module.exports = {
          * The base URL of the WordPress site without the trailingslash and the protocol. This is required.
          * Example : 'gatsbyjsexamplewordpress.wordpress.com' or 'www.example-site.com'
          */
-        baseUrl: "http://13.211.141.224",
+        baseUrl: "http://52.62.114.121/",
         // The protocol. This can be http or https.
         protocol: "http",
         // Indicates whether the site is hosted on wordpress.com.
@@ -111,7 +112,7 @@ module.exports = {
         // all routes that begin with `yoast` from fetch.
         // Whitelisted routes using glob patterns
         includedRoutes: [
-          "**/categories",
+          //"**/categories",
           "**/posts",
           "**/pages",
           "**/media",
@@ -119,6 +120,7 @@ module.exports = {
           "**/taxonomies",
           "**/users",
           "**/menus",
+          "**/*/*/portfolio"
         ],
         // Blacklisted routes using glob patterns
         // excludedRoutes: ["**/posts/1456"],

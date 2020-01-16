@@ -24,33 +24,33 @@ exports.createPages = async ({ graphql, actions }) => {
   // it like the site has a built-in database constructed
   // from the fetched data that you can run queries against.
   const result = await graphql(`
-    {
-      allWordpressPage {
-        edges {
-          node {
-            id
-            slug
-            status
-            template
-            title
-            content
+  {
+    allWordpressPage {
+          edges {
+            node {
+              id
+              slug
+              status
+              template
+              title
+              content
+            }
           }
         }
-      }
-      allWordpressPost {
-        edges {
-          node {
-            id
-            slug
-            status
-            template
-            format
-            title
-            content
+  allWordpressWpPortfolio {
+            edges {
+              node {
+                title
+                excerpt
+                content
+                slug
+                featured_media {
+                  source_url
+                }
+              }
+            }
           }
-        }
-      }
-    }
+  }
   `)
 
   // Check for any errors
@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring
-  const { allWordpressPage, allWordpressPost } = result.data
+  const { allWordpressPage, allWordpressWpPortfolio } = result.data
 
   // Create Page pages.
   // We want to create a detailed page for each page node.
@@ -85,10 +85,10 @@ exports.createPages = async ({ graphql, actions }) => {
   // The path field stems from the original WordPress link
   // and we use it for the slug to preserve url structure.
   // The Post ID is prefixed with 'POST_'
-  allWordpressPost.edges.forEach(edge => {
+  allWordpressWpPortfolio.edges.forEach(edge => {
     createPage({
-      path: `/post/${edge.node.slug}`,
-      component: path.resolve(`./src/templates/post.js`),
+      path: `/portfolio/${edge.node.slug}`,
+      component: path.resolve(`./src/templates/portfolio.js`),
       context: edge.node,
     })
   })
